@@ -16,6 +16,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SmartcomStore.Core;
 using SmartcomStore.Data;
+using AutoMapper;
+using SmartcomStore.Services.Interfaces;
+using SmartcomStore.Services;
+using SmartcomStore.Data.Models.Identity;
 
 namespace SmartcomStore
 {
@@ -31,10 +35,25 @@ namespace SmartcomStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddIdentity<User, Role>(options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+            })
+                .AddRoles<Role>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(config =>
@@ -55,6 +74,10 @@ namespace SmartcomStore
                         IssuerSigningKey = key
                     };
                 });
+
+            services.AddServices(Configuration);
+
+
 
             services.AddControllers();
         }

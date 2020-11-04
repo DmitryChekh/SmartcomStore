@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SmartcomStore.Data;
 using SmartcomStore.Data.Models.Identity;
+using SmartcomStore.Models;
+using SmartcomStore.Core;
+using AutoMapper;
+using SmartcomStore.Models.ResponseModels;
 
 namespace SmartcomStore.Services
 {
@@ -15,26 +19,69 @@ namespace SmartcomStore.Services
         private readonly ApplicationDbContext _dataContext;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
-        public IdentityService(ApplicationDbContext dataContext, UserManager<User> userManager, RoleManager<Role> roleManager)
+        private readonly IMapper _mapper;
+        public IdentityService(ApplicationDbContext dataContext, 
+            UserManager<User> userManager, 
+            RoleManager<Role> roleManager, 
+            IMapper mapper
+            )
         {
             _dataContext = dataContext;
             _userManager = userManager;
             _roleManager = roleManager;
+            _mapper = mapper;
         }
 
-        public Task<int> CreateUser()
+        public async Task<LoginResponseVM> LoginAsync(string username, string password)
         {
-            throw new NotImplementedException();
-        }
+            var user = await _userManager.FindByNameAsync(username);
 
-        public Task<int> GetUserById()
-        {
-            throw new NotImplementedException();
-        }
+            
+            if (user == null || user.IsDeleted )
+                return new LoginResponseVM { Status = false, Error = "User with this username doesnt exist" };
 
-        public Task<int> GetUserByUsername()
+            var resultLogin = await _userManager.CheckPasswordAsync(user, password);
+
+            if (resultLogin)
+            {
+                var userRole = await _userManager.GetRolesAsync(user);
+                var userData = _mapper.Map<UserDto>(user);
+                userData.Roles = userRole;
+                return new LoginResponseVM { User = userData, Status = true };
+            }
+            else
+            {
+                return new LoginResponseVM { Status = false, Error = "Invalid password" };
+            }
+        }
+        public async Task<RegistrationResponseVM> RegisterAsync(string username, string password, string name, string address)
         {
-            throw new NotImplementedException();
+            var existingUser = await _userManager.FindByNameAsync(username);
+
+            if (existingUser != null || existingUser.IsDeleted)
+                return new RegistrationResponseVM { Status = false, Error = "This username also existed" };
+
+            var newUser = new User
+            {
+                Address = address,
+                UserName = username,
+                Name = name
+            };
+
+            var createdUser = await _userManager.CreateAsync(newUser, password);
+
+
+            if (createdUser.Succeeded)
+            {
+                var userRole = await _userManager.AddToRoleAsync(newUser, Constants.Roles.Customer);
+                return new RegistrationResponseVM{ Status = true };
+            }
+            else
+            {
+                return new RegistrationResponseVM { Status = false };
+            }
         }
     }
+
+
 }

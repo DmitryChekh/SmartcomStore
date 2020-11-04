@@ -15,10 +15,11 @@ namespace SmartcomStore.Data.Models.Identity
             // example: 2110-2020
             Code = $"{DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString()}-{DateTime.Now.Year.ToString()}";
         }
+
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         public string Code { get; set; }
@@ -26,6 +27,9 @@ namespace SmartcomStore.Data.Models.Identity
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Discount { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public ICollection<UserRole> UserRoles { get; set; }
     }
 }
+ 

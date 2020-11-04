@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "B:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {}
+    "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {}
   },
   "projects": {
-    "B:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {
+    "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "B:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+        "projectUniqueName": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
         "projectName": "SmartcomStore",
-        "projectPath": "B:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
-        "packagesPath": "C:\\Users\\Дмитрий\\.nuget\\packages\\",
-        "outputPath": "B:\\Programming\\SmartcomStore\\SmartcomStore\\obj\\",
+        "projectPath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+        "packagesPath": "C:\\Users\\dimar\\.nuget\\packages\\",
+        "outputPath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Дмитрий\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dimar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.9, )"
@@ -87,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

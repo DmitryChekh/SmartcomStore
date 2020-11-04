@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartcomStore.Data;
 
 namespace SmartcomStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201031124728_AddSoftDeleteToUser")]
+    partial class AddSoftDeleteToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,36 +258,6 @@ namespace SmartcomStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SmartcomStore.Data.Models.Product", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(14,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("SmartcomStore.Data.Models.Identity.RoleClaim", b =>

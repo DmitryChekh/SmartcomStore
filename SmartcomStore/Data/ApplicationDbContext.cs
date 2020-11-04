@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SmartcomStore.Core;
+using SmartcomStore.Data.Models;
 using SmartcomStore.Data.Models.Identity;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,8 @@ namespace SmartcomStore.Data
         //entities
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+
+        public DbSet<Product> Products { get; set; }
 
 
         
