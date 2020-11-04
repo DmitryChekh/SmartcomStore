@@ -15,6 +15,7 @@ namespace SmartcomStore.Services
         {
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
         }
     }
 }

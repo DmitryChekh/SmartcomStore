@@ -11,6 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using SmartcomStore.Services.Interfaces;
 using SmartcomStore.Models.RequetModels.Identity;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartcomStore.Controllers
 {
@@ -33,38 +35,38 @@ namespace SmartcomStore.Controllers
 
             var result = await _userService.GetUsers(page, perPage);
 
-            if (result == null)
-                return NotFound();
+            if (!result.Status)
+                return BadRequest(result.Error);
 
             return Ok(result);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUserById(Guid id)
+        public async Task<IActionResult> GetUserById([Required] Guid id)
         {
             var result = await _userService.GetById(id);
 
-            if (result == null)
-                return NotFound();
+            if (!result.Status)
+            {
+                return BadRequest(result.Error);
+            }
 
             return Ok(result);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> DeleteUser(Guid id)
-        //{
-        //    var response = await _userService.DeleteUser(id);
 
-        //    if (!response.Success)
-        //    {
-        //        Response.StatusCode = 404;
-        //        await Response.WriteAsync(response.Errors.ToString());
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser([Required] Guid id)
+        {
+            var result = await _userService.DeleteUser(id);
 
-        //        return Response;
-        //    }
+            if(!result.Status)
+            {
+                return BadRequest(result.Error);
+            }
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
     }
 }

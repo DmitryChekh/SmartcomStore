@@ -49,7 +49,7 @@ namespace SmartcomStore.Controllers
             if (!result.Status)
                 return BadRequest(result.Error);
 
-            return Ok(result);
+            return Ok(result.User);
         }
 
 

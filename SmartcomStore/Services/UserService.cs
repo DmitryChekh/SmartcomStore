@@ -37,7 +37,8 @@ namespace SmartcomStore.Services
         public async Task<BaseResponseModel> DeleteUser(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
-            if(user == null)
+
+            if(user != null)
             {
                 user.IsDeleted = true;
                 await _dataContext.SaveChangesAsync();
@@ -92,13 +93,14 @@ namespace SmartcomStore.Services
                 .Take(perPage)
                 .ToList();
 
-            if(users == null && users.Count == 0)
+            if (users == null || users.Count == 0)
             {
+                if(users.Count == 0)
                 return new BaseResponseModel<IEnumerable<UserDto>>
                 {
                     Data = new List<UserDto>(),
                     Status = false,
-                    Error = "Something wrong"
+                    Error = "User list is empty"
                 };
             }
 
@@ -106,7 +108,7 @@ namespace SmartcomStore.Services
             {
                 Data = _mapper.Map<IEnumerable<UserDto>>(users),
                 Status = true,
-                Error = null
+                Error = "",
             };
 
             return result;

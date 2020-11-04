@@ -15,6 +15,5 @@ namespace SmartcomStore.Services.Interfaces
         Task<UserDto> GetUserByUsername(string username);
         Task<BaseResponseModel<IEnumerable<UserDto>>> GetUsers(int page, int perPage);
         Task<BaseResponseModel> DeleteUser(Guid id);
-
     }
 }

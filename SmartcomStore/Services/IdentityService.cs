@@ -58,8 +58,13 @@ namespace SmartcomStore.Services
         {
             var existingUser = await _userManager.FindByNameAsync(username);
 
-            if (existingUser != null || existingUser.IsDeleted)
-                return new RegistrationResponseVM { Status = false, Error = "This username also existed" };
+            if (existingUser != null)
+            {
+                if (existingUser.IsDeleted)
+                {
+                    return new RegistrationResponseVM { Status = false, Error = "This username already exists" };
+                }
+            }    
 
             var newUser = new User
             {
