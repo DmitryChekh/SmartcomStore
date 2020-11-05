@@ -20,6 +20,7 @@ using AutoMapper;
 using SmartcomStore.Services.Interfaces;
 using SmartcomStore.Services;
 using SmartcomStore.Data.Models.Identity;
+using SmartcomStore.Extensions;
 
 namespace SmartcomStore
 {
@@ -76,7 +77,7 @@ namespace SmartcomStore
                 });
 
             services.AddServices(Configuration);
-
+            services.AddCustomSwagger();
 
 
             services.AddControllers();
@@ -98,7 +99,7 @@ namespace SmartcomStore
 
             app.UseAuthorization();
 
-
+            app.UseCustomSwagger();
 
             app.UseEndpoints(endpoints =>
             {

@@ -55,10 +55,10 @@ namespace SmartcomStore.Controllers
 
         //[HttpGet]
         //[Authorize(AuthenticationSchemes = "Bearer")]
-        public async Task<IActionResult> Test()
-        {
-            return Ok("Security");
-        }
+        //public async Task<IActionResult> Test()
+        //{
+        //    return Ok("Security");
+        //}
 
 
 

@@ -274,8 +274,6 @@ e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\runtimes\win\
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.csprojAssemblyReference.cache
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.AssemblyInfoInputs.cache
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.AssemblyInfo.cs
-e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.csproj.CoreCompileInputs.cache
-e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.MvcApplicationPartsAssemblyInfo.cache
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.RazorTargetAssemblyInfo.cache
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.csproj.CopyComplete
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\staticwebassets\SmartcomStore.StaticWebAssets.Manifest.cache
@@ -283,3 +281,10 @@ e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\staticwebasse
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.dll
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.pdb
 e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.genruntimeconfig.cache
+E:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.csproj.CoreCompileInputs.cache
+E:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.MvcApplicationPartsAssemblyInfo.cs
+E:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.MvcApplicationPartsAssemblyInfo.cache
+E:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
