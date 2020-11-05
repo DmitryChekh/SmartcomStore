@@ -17,7 +17,7 @@ namespace SmartcomStore.Data
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
 
@@ -66,6 +66,28 @@ namespace SmartcomStore.Data
                     .IsRequired();
             });
 
+            builder.Entity<Order>(order =>
+            {
+                order.HasOne(o => o.User)
+                    .WithMany(u => u.Orders)
+                    .HasForeignKey(o => o.CustomerId)
+                    .IsRequired();
+            });
+
+            builder.Entity<OrderItem>(orderItem =>
+            {
+                orderItem.HasOne(o => o.Order)
+                    .WithMany(x => x.OrderItems)
+                    .HasForeignKey(k => k.OrderId)
+                    .IsRequired();
+
+                orderItem.HasOne(p => p.Product)
+                    .WithMany(x => x.OrderItems)
+                    .HasForeignKey(k => k.ItemId)
+                    .IsRequired();
+
+            });
+
 
 
             builder.Entity<UserClaim>().ToTable("UserClaims");
@@ -77,12 +99,17 @@ namespace SmartcomStore.Data
         }
 
         //entities
+#pragma warning disable CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
         public DbSet<User> Users { get; set; }
+
         public DbSet<Role> Roles { get; set; }
+#pragma warning restore CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderItem> OrderItems { get; set; }
 
 
-        
     }
 }

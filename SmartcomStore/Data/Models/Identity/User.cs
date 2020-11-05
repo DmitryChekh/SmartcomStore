@@ -30,6 +30,8 @@ namespace SmartcomStore.Data.Models.Identity
         public bool IsDeleted { get; set; }
 
         public ICollection<UserRole> UserRoles { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }
  
