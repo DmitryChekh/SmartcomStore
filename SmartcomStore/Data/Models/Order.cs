@@ -9,10 +9,17 @@ namespace SmartcomStore.Data.Models
 {
     public class Order : BaseModel
     {
+        public enum OrderStatus
+        {
+            New,
+            Processing,
+            Completed
+        }
+
         public Guid CustomerId { get; set; }
         public DateTime ShipmentDate { get; set; }
         public int OrderNumber { get; set; }
-        public string Status { get; set; }
+        public OrderStatus Status { get; set; }
 
         public bool IsDeleted { get; set; }
         public User User { get; set; }

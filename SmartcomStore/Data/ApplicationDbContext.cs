@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartcomStore.Core;
 using SmartcomStore.Data.Models;
 using SmartcomStore.Data.Models.Identity;
+using SmartcomStore.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +74,10 @@ namespace SmartcomStore.Data
                     .WithMany(u => u.Orders)
                     .HasForeignKey(o => o.CustomerId)
                     .IsRequired();
+
+                order.Property(c => c.Status).HasConversion<string>();
             });
+
 
             builder.Entity<OrderItem>(orderItem =>
             {
@@ -87,7 +92,6 @@ namespace SmartcomStore.Data
                     .IsRequired();
 
             });
-
 
 
             builder.Entity<UserClaim>().ToTable("UserClaims");
