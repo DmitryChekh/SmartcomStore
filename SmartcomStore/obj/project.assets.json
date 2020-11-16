@@ -8908,11 +8908,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+      "projectUniqueName": "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
       "projectName": "SmartcomStore",
-      "projectPath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+      "projectPath": "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
       "packagesPath": "C:\\Users\\dimar\\.nuget\\packages\\",
-      "outputPath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\obj\\",
+      "outputPath": "e:\\Programming\\SmartcomStore\\SmartcomStore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dimar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8927,6 +8927,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -8938,6 +8939,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
@@ -9004,7 +9006,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

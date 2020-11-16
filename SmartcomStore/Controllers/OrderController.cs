@@ -17,6 +17,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Routing;
 using SmartcomStore.Models;
 using SmartcomStore.ResourceParameters;
+using static SmartcomStore.Data.Models.Order;
+using SmartcomStore.Models.ResponseModels;
 
 namespace SmartcomStore.Controllers
 {
@@ -60,9 +62,20 @@ namespace SmartcomStore.Controllers
         }
 
         [HttpGet("customer")]
-        public async Task<IActionResult> GetOrdersByCustomer([Required] Guid id)
+        public async Task<IActionResult> GetOrdersByCustomer([Required] Guid id, string status)
         {
-            var result = await _orderService.GetOrderByCustomer(id);
+            var result = new BaseResponseModel<IEnumerable<OrderDto>>();
+
+            OrderStatus orderStatus;
+            if (Enum.TryParse(status, true, out orderStatus))
+            {
+                result = await _orderService.GetOrderByCustomer(id, orderStatus);
+            }
+            else
+            {
+                result = await _orderService.GetOrderByCustomer(id);
+            }
+
 
             if (!result.Status)
             {
@@ -70,7 +83,35 @@ namespace SmartcomStore.Controllers
             }
 
             return Ok(result.Data);
+        }
 
+        [HttpPost("confirm")]
+        public async Task<IActionResult> ConfirmOrder([FromBody] ConfirmOrderDto confirmOrder)
+        {
+            if (confirmOrder.ShipmentDate.Year == 1)
+                return BadRequest("Invalid date");
+
+            var result = await _orderService.ConfirmOrder(confirmOrder.Id, confirmOrder.ShipmentDate);
+
+            if (!result.Status)
+            {
+                return NotFound(result.Error);
+            }
+
+            return Ok(result.Data);
+        }
+
+        [HttpPost("close")]
+        public async Task<IActionResult> CloseOrder(Guid id)
+        {
+            var result = await _orderService.CloseOrder(id);
+
+            if (!result.Status)
+            {
+                return NotFound(result.Error);
+            }
+
+            return Ok(result.Data);
         }
 
     }

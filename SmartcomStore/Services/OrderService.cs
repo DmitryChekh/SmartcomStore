@@ -118,7 +118,7 @@ namespace SmartcomStore.Services
             var order = await _dataContext.Orders
                 .Include(x => x.OrderItems)
                 .ThenInclude(x => x.Product)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
 
 
             if(order == null)
@@ -131,7 +131,7 @@ namespace SmartcomStore.Services
 
         }
 
-        public async Task<BaseResponseModel<IEnumerable<OrderDto>>> GetOrderByCustomer(Guid id)
+        public async Task<BaseResponseModel<IEnumerable<OrderDto>>> GetOrderByCustomer(Guid id, OrderStatus? orderStatus = null)
         {
             var currentUser = await _userManager.FindByIdAsync(id.ToString());
 
@@ -141,10 +141,22 @@ namespace SmartcomStore.Services
             if (currentUser.IsDeleted)
                 return new BaseResponseModel<IEnumerable<OrderDto>> { Status = false, Error = "User is deleted" };
 
-            var orders = await _dataContext.Orders
-                .Include(x=> x.OrderItems)
-                .ThenInclude(x => x.Product)
-                .Where(x => x.CustomerId == id).ToListAsync();
+            var orders = new List<Order>();
+
+            if(orderStatus == null)
+            {
+                orders = await _dataContext.Orders
+                    .Include(x => x.OrderItems)
+                    .ThenInclude(x => x.Product)
+                    .Where(x => x.CustomerId == id && !x.IsDeleted).ToListAsync();
+            }
+            else
+            {
+                orders = await _dataContext.Orders
+                    .Include(x => x.OrderItems)
+                    .ThenInclude(x => x.Product)
+                    .Where(x => x.CustomerId == id && x.Status == orderStatus && !x.IsDeleted).ToListAsync();
+            }
 
 
 
@@ -157,26 +169,55 @@ namespace SmartcomStore.Services
         }
 
 
-        public Task<BaseResponseModel> DeleteOrder(Guid id)
+        public async Task<BaseResponseModel> DeleteOrder(Guid id)
         {
-            throw new NotImplementedException();
+            var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
+
+            if (order == null)
+                return new BaseResponseModel { Status = false, Error = "The order was not deleted because it was not found." };
+
+            if(order.Status != OrderStatus.New)
+                return new BaseResponseModel { Status = false, Error = "The order is processing or completed. You can't delete this order." };
+
+
+            order.IsDeleted = true;
+            await _dataContext.SaveChangesAsync();
+
+            return new BaseResponseModel { Status = true };
         }
 
 
-
-        public Task<BaseResponseModel<IEnumerable<OrderDto>>> GetOrders()
+        public async Task<BaseResponseModel<UpdateOrderStatusDto>> UpdateOrderStatus(Order order)
         {
-            throw new NotImplementedException();
+
+            if(order.Status == OrderStatus.New) { order.Status = OrderStatus.Processing; }
+            else { order.Status = OrderStatus.Completed; }
+
+            await _dataContext.SaveChangesAsync();
+
+            return new BaseResponseModel<UpdateOrderStatusDto> { Status = true, Data = _mapper.Map<UpdateOrderStatusDto>(order) };
         }
 
-        public Task<BaseResponseModel<OrderDto>> CreateOrderAsync(string name, decimal price, string category)
+        public async Task<BaseResponseModel<UpdateOrderStatusDto>> ConfirmOrder(Guid id, DateTime shipmentDate)
         {
-            throw new NotImplementedException();
+            var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
+
+            if (order == null)
+                return new BaseResponseModel<UpdateOrderStatusDto> { Status = false, Error = "The order was not found." };
+
+            order.ShipmentDate = shipmentDate;
+
+            return await UpdateOrderStatus(order);
         }
 
-        public Task<BaseResponseModel<ProductDto>> UpdateOrderStatus()
+        public async Task<BaseResponseModel<UpdateOrderStatusDto>> CloseOrder(Guid id)
         {
-            throw new NotImplementedException();
+            var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
+
+            if (order == null)
+                return new BaseResponseModel<UpdateOrderStatusDto> { Status = false, Error = "The order was not found." };
+
+            return await UpdateOrderStatus(order);
         }
     }
 }

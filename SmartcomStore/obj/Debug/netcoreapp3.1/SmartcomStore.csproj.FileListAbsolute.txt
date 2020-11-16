@@ -142,7 +142,6 @@ B:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\AutoMapper.Ex
 B:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.MvcApplicationPartsAssemblyInfo.cache
 e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\appsettings.Development.json
 e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\appsettings.json
-e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\SmartcomStore.exe
 e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\SmartcomStore.deps.json
 e:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\SmartcomStore.runtimeconfig.json
@@ -288,3 +287,4 @@ E:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore
 E:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.MvcApplicationPartsAssemblyInfo.cs
 E:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\SmartcomStore.MvcApplicationPartsAssemblyInfo.cache
 E:\Programming\SmartcomStore\SmartcomStore\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+e:\Programming\SmartcomStore\SmartcomStore\obj\Debug\netcoreapp3.1\scopedcss\bundle\SmartcomStore.styles.css
