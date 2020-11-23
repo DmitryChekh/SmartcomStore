@@ -1,0 +1,2 @@
+# SmartcomStore
+Motolithic application
