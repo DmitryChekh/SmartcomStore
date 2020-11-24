@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j9W1pliHzSHH78SNa+XOdPsfPEutJH8aU72cbXai0nPPbZA+m4ih9yVQ6c5XGOU3h9B5MyJinqLUgpIzLWxsng==",
+  "dgSpecHash": "Jn5D5HINHKVm2DSnX6YHaoZUIDqOWY+0u6pi4FjRCTd83PDLM+TOkUqgzkyKJRInrv9RRPopA/ngCbm7N9hgSQ==",
   "success": true,
-  "projectFilePath": "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+  "projectFilePath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dimar\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
     "C:\\Users\\dimar\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",

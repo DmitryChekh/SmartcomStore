@@ -16,11 +16,7 @@ namespace SmartcomStore.Services.Interfaces
         Task<BaseResponseModel<OrderDto>> GetById(Guid id);
         Task<BaseResponseModel<IEnumerable<OrderDto>>> GetOrderByCustomer(Guid id, OrderStatus? orderStatus = null);
 
-        Task<BaseResponseModel<UpdateOrderStatusDto>> ConfirmOrder(Guid id, DateTime shipmentDate);
-
-        Task<BaseResponseModel<UpdateOrderStatusDto>> CloseOrder(Guid id);
-
-        Task<BaseResponseModel<UpdateOrderStatusDto>> UpdateOrderStatus(Order order);
+        Task<BaseResponseModel<UpdateOrderStatusDto>> UpdateOrderStatus(Guid id, DateTime shipmentDate);
 
         // Task<BaseResponseModel<IEnumerable<OrderDto>>> GetOrders();
 

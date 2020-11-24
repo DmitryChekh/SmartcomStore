@@ -85,13 +85,10 @@ namespace SmartcomStore.Controllers
             return Ok(result.Data);
         }
 
-        [HttpPost("confirm")]
-        public async Task<IActionResult> ConfirmOrder([FromBody] ConfirmOrderDto confirmOrder)
+        [HttpPost("updatestatus")]
+        public async Task<IActionResult> UpdateStatus([FromBody] ConfirmOrderDto confirmOrder)
         {
-            if (confirmOrder.ShipmentDate.Year == 1)
-                return BadRequest("Invalid date");
-
-            var result = await _orderService.ConfirmOrder(confirmOrder.Id, confirmOrder.ShipmentDate);
+            var result = await _orderService.UpdateOrderStatus(confirmOrder.Id, confirmOrder.ShipmentDate);
 
             if (!result.Status)
             {
@@ -101,18 +98,6 @@ namespace SmartcomStore.Controllers
             return Ok(result.Data);
         }
 
-        [HttpPost("close")]
-        public async Task<IActionResult> CloseOrder(Guid id)
-        {
-            var result = await _orderService.CloseOrder(id);
-
-            if (!result.Status)
-            {
-                return NotFound(result.Error);
-            }
-
-            return Ok(result.Data);
-        }
 
     }
 }

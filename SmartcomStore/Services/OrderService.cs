@@ -187,37 +187,31 @@ namespace SmartcomStore.Services
         }
 
 
-        public async Task<BaseResponseModel<UpdateOrderStatusDto>> UpdateOrderStatus(Order order)
+        public async Task<BaseResponseModel<UpdateOrderStatusDto>> UpdateOrderStatus(Guid id, DateTime shipmentDate)
         {
+            var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
 
-            if(order.Status == OrderStatus.New) { order.Status = OrderStatus.Processing; }
-            else { order.Status = OrderStatus.Completed; }
+            if (order.Status == OrderStatus.New) 
+            {
+                if (shipmentDate != default && shipmentDate > DateTime.Now)
+                {
+                    order.Status = OrderStatus.Processing;
+                    order.ShipmentDate = shipmentDate;
+                }
+                else
+                {
+                    return new BaseResponseModel<UpdateOrderStatusDto> { Status = false, Error = "Invalid shipment date." };
+                }
+            }
+            else
+            {
+                order.Status = OrderStatus.Completed;
+            }
 
             await _dataContext.SaveChangesAsync();
 
             return new BaseResponseModel<UpdateOrderStatusDto> { Status = true, Data = _mapper.Map<UpdateOrderStatusDto>(order) };
         }
 
-        public async Task<BaseResponseModel<UpdateOrderStatusDto>> ConfirmOrder(Guid id, DateTime shipmentDate)
-        {
-            var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
-
-            if (order == null)
-                return new BaseResponseModel<UpdateOrderStatusDto> { Status = false, Error = "The order was not found." };
-
-            order.ShipmentDate = shipmentDate;
-
-            return await UpdateOrderStatus(order);
-        }
-
-        public async Task<BaseResponseModel<UpdateOrderStatusDto>> CloseOrder(Guid id)
-        {
-            var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
-
-            if (order == null)
-                return new BaseResponseModel<UpdateOrderStatusDto> { Status = false, Error = "The order was not found." };
-
-            return await UpdateOrderStatus(order);
-        }
     }
 }

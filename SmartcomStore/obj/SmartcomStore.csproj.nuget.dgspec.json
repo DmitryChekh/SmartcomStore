@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {}
+    "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {}
   },
   "projects": {
-    "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {
+    "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+        "projectUniqueName": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
         "projectName": "SmartcomStore",
-        "projectPath": "e:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
+        "projectPath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\SmartcomStore.csproj",
         "packagesPath": "C:\\Users\\dimar\\.nuget\\packages\\",
-        "outputPath": "e:\\Programming\\SmartcomStore\\SmartcomStore\\obj\\",
+        "outputPath": "E:\\Programming\\SmartcomStore\\SmartcomStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dimar\\AppData\\Roaming\\NuGet\\NuGet.Config",
